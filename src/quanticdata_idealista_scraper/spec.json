@@ -1,0 +1,79 @@
+{
+ "cli": "idealista-scraper",
+ "name": "Idealista Scraper",
+ "version": "0.1.0",
+ "description": "Idealista scraper for Python and the command line: homes for sale or rent in Spain, Italy and Portugal with price, price per m2, rooms, size, floor, price drops and listing agency, as JSON or CSV. Free and open source; sign in with your QuanticData account, no proxies or headless browser to run.",
+ "links": {
+  "repo": "https://github.com/quantumproxies/idealista-scraper",
+  "page": "https://quanticdata.io/collectors/idealista-scraper-api/?utm_source=github&utm_medium=cli&utm_campaign=idealista-scraper",
+  "billing": "https://app.quanticdata.io/billing?utm_source=github&utm_medium=cli&utm_campaign=idealista-scraper",
+  "pricing": "https://quanticdata.io/pricing/?utm_source=github&utm_medium=cli&utm_campaign=idealista-scraper"
+ },
+ "commands": [
+  {
+   "name": "search",
+   "collector": "idealista_search",
+   "method": "search",
+   "help": "Idealista listings for sale or rent in Spain, Italy or Portugal",
+   "description": "Property listings from Idealista Spain/Italy/Portugal — price, rooms, size, agency.",
+   "positional": "location",
+   "positional_is_list": false,
+   "positional_optional": false,
+   "columns": [
+    "rank",
+    "listing_id",
+    "property_type",
+    "price_value",
+    "size_m2",
+    "rooms",
+    "price_per_m2_value",
+    "agency"
+   ],
+   "sample": "idealista_search",
+   "inputs": [
+    {
+     "name": "location",
+     "type": "string",
+     "required": true,
+     "description": "Idealista location slug as in the site's own search URLs, e.g. \"madrid-madrid\" or \"barcelona-barcelona\", or a full listing URL.",
+     "arg": "location"
+    },
+    {
+     "name": "operation",
+     "type": "string",
+     "required": false,
+     "description": "sale (default) or rent.",
+     "enum": [
+      "sale",
+      "rent"
+     ],
+     "default": "sale",
+     "arg": "operation"
+    },
+    {
+     "name": "site",
+     "type": "string",
+     "required": false,
+     "description": "Country site: es (Spain, the default), it (Italy) or pt (Portugal).",
+     "enum": [
+      "es",
+      "it",
+      "pt"
+     ],
+     "default": "es",
+     "arg": "site"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many listings to deliver at most (1–100). You pay only for delivered listings.",
+     "min": 1,
+     "max": 100,
+     "default": 30,
+     "arg": "max_results"
+    }
+   ]
+  }
+ ]
+}
